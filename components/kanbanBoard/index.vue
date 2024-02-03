@@ -31,7 +31,6 @@
         </div>
       </div>
     </div>
-<!--    {{ firstItem }}-->
     <ExtraModal :visible="showModalMax" :idOpenTaskModal="parentOpenTaskModal" ref="childComponentRef" :updateHeight="windowHeight" />
   </div>
 </template>
