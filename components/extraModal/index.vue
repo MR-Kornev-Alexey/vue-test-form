@@ -86,14 +86,13 @@ export default {
         const foundTask = await kanbanStore.findOpenTask(taskId);
         dataFromStore.value = foundTask;
         console.log('Найдена задача modal:', foundTask);
-        // Далее обрабатывайте найденную задачу
       } catch (error) {
         console.error('Ошибка при поиске задачи:', error);
       }
     };
     const updateTitleOneTask = async (taskId, newTitle) => {
       try {
-        await kanbanStore.updateTitleTask(taskId, newTitle.trim());
+        await kanbanStore.updateTaskProperty(taskId, 'title', newTitle.trim());
         editMode.value = true
       } catch (error) {
         console.error('Ошибка при записи задачи:', error);
@@ -101,7 +100,7 @@ export default {
     }
     const updateDescriptionOneTask = async (taskId, newDescription) => {
       try {
-        await kanbanStore.updateDescriptionTask(taskId, newDescription);
+        await kanbanStore.updateTaskProperty(taskId, 'description', newDescription);
         editDescription.value = true
       } catch (error) {
         console.error('Ошибка при записи задачи:', error);
@@ -109,7 +108,7 @@ export default {
     }
     const updateLinkOneTask = async (taskId, newLink) => {
       try {
-        await kanbanStore.updateLinkTask(taskId, newLink);
+         await kanbanStore.updateTaskProperty(taskId, 'linkTask', newLink);
         editLink.value = true
       } catch (error) {
         console.error('Ошибка при записи задачи:', error);
