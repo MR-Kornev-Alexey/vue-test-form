@@ -17,18 +17,18 @@ export const useKanbanStore = defineStore({
         }
     },
     actions: {
-        changeTitleColumn (id) {
+        changeTitleColumn(id) {
             const foundColumn = this.columns.find(column => column.id === id);
             foundColumn.editMode = false
         },
-        inputNewTitleColumn (title, id){
+        inputNewTitleColumn(title, id) {
             const foundColumn = this.columns.find(column => column.id === id);
             foundColumn.editMode = true
             foundColumn.title = title
         },
         addColumn(title) {
             const id = this.columns.length
-            this.columns.push({ id: id,  title, tasks: [], editMode: true});
+            this.columns.push({id: id, title, tasks: [], editMode: true});
         },
         removeColumn(index) {
             this.columns.splice(index, 1);
@@ -50,25 +50,55 @@ export const useKanbanStore = defineStore({
         },
         // Обновление информации о задаче
         findOpenTask(id) {
-            const yourTask =this.columns.reduce((result, column) => {
+            const yourTask = this.columns.reduce((result, column) => {
                 const task = column.tasks.find(task => task.id === id);
                 return task ? task : result;
             }, null);
 
             if (yourTask) {
-                console.log("Найдена задача:", yourTask);
                 return Promise.resolve(yourTask)
             } else {
-                console.log("Задача с указанным id не найдена.");
-                return Promise.resolve('')
+               return Promise.resolve('')
             }
         },
-        updateTask(columnId, taskId, updatedTask) {
-            const columnIndex = this.columns.findIndex(column => column.id === columnId);
-            const taskIndex = this.columns[columnIndex].tasks.findIndex(task => task.id === taskId);
-
-            if (columnIndex !== -1 && taskIndex !== -1) {
-                this.$set(this.columns[columnIndex].tasks, taskIndex, updatedTask);
+        updateTitleTask(id, title) {
+            const yourTask = this.columns.reduce((result, column) => {
+                const task = column.tasks.find(task => task.id === id);
+                return task ? task : result;
+            }, null);
+            if (yourTask) {
+                console.log("Найдена задача:", yourTask);
+                yourTask.title = title;
+            } else {
+                console.log("Задача с указанным id не найдена.");
+            }
+        },
+        updateLinkTask(id, link) {
+            console.log("входящий  id:", id);
+            console.log("входящий  value:", link);
+            const yourTask = this.columns.reduce((result, column) => {
+                const task = column.tasks.find(task => task.id === id);
+                return task ? task : result;
+            }, null);
+            if (yourTask) {
+                console.log("Найдена задача:", yourTask);
+                yourTask.linkTask = link;
+            } else {
+                console.log("Задача с указанным id не найдена.");
+            }
+        },
+        updateDescriptionTask(id, description) {
+            console.log("входящий  id:", id);
+            console.log("входящий  value:", description);
+            const yourTask = this.columns.reduce((result, column) => {
+                const task = column.tasks.find(task => task.id === id);
+                return task ? task : result;
+            }, null);
+            if (yourTask) {
+                console.log("Найдена задача:", yourTask);
+                yourTask.description = description;
+            } else {
+                console.log("Задача с указанным id не найдена.");
             }
         },
         setDraggedTask(draggedTask) {

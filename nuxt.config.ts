@@ -6,6 +6,7 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "@nuxtjs/tailwindcss",
     "nuxt-headlessui",
+    "@pinia/nuxt"
   ],
   tailwindcss: {
     cssPath: "~/assets/css/tailwind.css",

@@ -3,3 +3,47 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.block-in-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.a-clean {
+    text-decoration: none;
+    color: #484849;
+}
+
+
+.btn-common {
+    padding: 8px 12px;
+    border: 1px solid #484849;
+    border-radius: 0.5rem;
+}
+
+.input-common {
+    border: 1px solid #484849;
+    padding: 8px 12px;
+}
+
+.percent100 {
+    width: 100%;
+}
+.delete-icon {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+}
+.add-new-task {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.box-input {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
