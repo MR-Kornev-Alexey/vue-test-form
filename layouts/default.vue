@@ -6,7 +6,7 @@ useHead({
   },
   meta: [
     { property: 'og:title', content: `Kanban` },
-    { name: 'description', content: 'Kanban is new table ' },
+    { name: 'description', content: 'Kanban is new table kanban ' },
     { property: 'og:url', content: 'https://kanban.kornevgmbh.com/' }
   ],
   title: `Kanban`,
