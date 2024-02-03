@@ -33,22 +33,13 @@ export const useKanbanStore = defineStore({
         removeColumn(index) {
             this.columns.splice(index, 1);
         },
-        // addTaskOld(columnIndex, text) {
-        //     this.columns[columnIndex].tasks.push({text});
-        // },
         deleteTask(columnIndex, taskIndex) {
 
             this.columns[columnIndex].tasks.splice(taskIndex, 1);
         },
-        // Добавление новой задачи в колонку
         addTask(columnId, task) {
             this.columns[columnId].tasks.push(task);
         },
-        // Удаление задачи из колонки
-        removeTask(columnId, taskId) {
-            this.columns[columnId].tasks = this.columns[columnId].tasks.filter(task => task.id !== taskId);
-        },
-        // Обновление информации о задаче
         findOpenTask(id) {
             const yourTask = this.columns.reduce((result, column) => {
                 const task = column.tasks.find(task => task.id === id);

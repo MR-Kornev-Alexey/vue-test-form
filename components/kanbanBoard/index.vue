@@ -41,7 +41,7 @@ import {useKanbanStore} from '../../stores/kanban'
 import SvgIcon from '@jamescoyle/vue-icon';
 import {mdiTabPlus, mdiTrashCanOutline} from '@mdi/js';
 
-import Task from '../Task';
+import Task from '../task';
 import ExtraModal from "../extraModal";
 import {v4 as uuidv4} from 'uuid';
 
