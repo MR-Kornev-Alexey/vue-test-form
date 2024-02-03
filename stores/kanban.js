@@ -1,13 +1,13 @@
-import {defineStore, acceptHMRUpdate} from 'pinia';
+import {defineStore, acceptHMRUpdate} from "pinia";
 
 export const useKanbanStore = defineStore({
-    id: 'kanbanBoard',
+    id: "kanbanBoard",
     state: () => ({
         columns: [
-            {id: 0, title: 'To Do', tasks: [], editMode: true},
-            {id: 1, title: 'In Progress', tasks: [], editMode: true},
-            {id: 2, title: 'Testing', tasks: [], editMode: true},
-            {id: 3, title: 'Done', tasks: [], editMode: true},
+            {id: 0, title: "To Do", tasks: [], editMode: true},
+            {id: 1, title: "In Progress", tasks: [], editMode: true},
+            {id: 2, title: "Testing", tasks: [], editMode: true},
+            {id: 3, title: "Done", tasks: [], editMode: true},
         ],
         draggedTask: null,
     }),
@@ -47,7 +47,7 @@ export const useKanbanStore = defineStore({
         },
         findOpenTask(id) {
             const yourTask = this.findTaskById(id);
-            return Promise.resolve(yourTask || '');
+            return Promise.resolve(yourTask || "");
         },
         updateTaskProperty(id, property, value) {
             const yourTask = this.findTaskById(id);
