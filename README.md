@@ -1,6 +1,6 @@
-# Jadoo
+# KanBan
 
-Jadoo is a travel agency landing page built with Nuxt 3 and TailwindCSS.
+Kanban is a page built with Nuxt 3 and TailwindCSS.
 
 ## Setup
 
@@ -32,12 +32,3 @@ pnpm run dev
 yarn dev
 ```
 
-## Figma Design
-
-Here is the link to the figma design for the Jadoo.
-
-[Jadoo Figma File](https://www.figma.com/file/ueZJdVwFai18bVSDnkhsN1/Travel-Website-Landing-Page-(Community)-(Copy)?type=design&node-id=0%3A1&mode=design&t=nFhek10pRK80Fsv0-1)
-
-## Jadoo Figma Design Image
-
-![Jadoo ](/jadoo.jpg "Jadoo ")
