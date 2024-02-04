@@ -4,8 +4,9 @@
       <input type="text" v-model="newColumn" class="input-common"/>
       <button class="btn-common ml-2"> добавить стадию</button>
     </form>
+    <div class="kanban-main">
     <div class="kanban-board">
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 p-8 sm:p-0 gap-8 sm:gap-16 my-4 sm:my-12 text-center">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 p-8 sm:p-0 gap-8 sm:gap-16 my-4 sm:my-12">
         <div v-for="(column, index) in columns" :key="index" class="kanban-column">
           <svg-icon type="mdi" :path="deleteNew" @click.stop="removeColumn(index)" class="delete-icon"></svg-icon>
           <div v-if="column.editMode" class="cursor-pointer" @click="enableEditMode(column)">
@@ -30,6 +31,7 @@
           </form>
         </div>
       </div>
+    </div>
     </div>
     <ExtraModal :visible="showModalMax" :idOpenTaskModal="parentOpenTaskModal" ref="childComponentRef" :updateHeight="windowHeight" />
   </div>
@@ -133,7 +135,7 @@ export default {
           id: uuidv4(),
           title: newTask.value[columnIndex],
           description: "введите новую задачу",
-          linkTask: 'введите ссылку'
+          linkTask: '#'
         }
         kanbanStore.addTask(columnIndex, uniqueTack);
         newTask.value = ['', '', '', ''];
@@ -173,20 +175,26 @@ export default {
 
 <style scoped lang="css">
 
-
-.kanban-board {
+.kanban-main {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+.kanban-board {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
 .kanban-column {
-  margin: 1rem;
   padding: 1rem;
   border: 1px solid #494949;
   border-radius: 0.5rem;
   width: 250px;
   position: relative;
+  margin: 0 auto;
 }
 
 .kanban-column h2 {
@@ -203,4 +211,35 @@ export default {
 input {
   margin-bottom: 0.5rem;
 }
+@media screen and (max-width: 1024px) {
+  .kanban-column {
+    margin: 1rem;
+    padding: 1rem;
+    border: 1px solid #494949;
+    border-radius: 0.5rem;
+    width: 220px;
+    position: relative;
+  }
+}
+@media screen and (max-width: 912px) {
+  .kanban-column {
+    margin: 1rem;
+    padding: 1rem;
+    border: 1px solid #494949;
+    border-radius: 0.5rem;
+    width: 260px;
+    position: relative;
+  }
+}
+@media screen and (max-width: 600px) {
+  .kanban-column {
+    margin: 1rem;
+    padding: 0.6rem;
+    border: 1px solid #494949;
+    border-radius: 0.5rem;
+    width: 90%;
+    position: relative;
+  }
+}
+
 </style>

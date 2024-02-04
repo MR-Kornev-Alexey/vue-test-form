@@ -10,7 +10,7 @@
     >
       <transition name="scale">
         <div class="extra-modal-container" v-if="active">
-           <div class="extra-modal-inner" ref="scrollContainer" :style="{ height: updateHeight + 'px', overflowY: 'auto' }"  >
+           <div class="extra-modal-inner " ref="scrollContainer" :style="{ height: updateHeight + 'px', overflowY: 'auto' }"  >
             <div class="extra-modal-header">
               <div>
                 <div v-if="editMode" class="cursor-pointer" @click="enableEditMode">
@@ -25,9 +25,9 @@
               <svg-icon type="mdi" :path="close" class="delete-icon" color="black" size="32px"
                         @click="modalToggle"></svg-icon>
             </div>
-            <div class="extra-modal-content text-center">
-              <div v-if="editDescription" class="cursor-pointer" @click="enableEditDescription">
-                <p class="text-left pl-3" v-html="formatText(dataFromStore.description)"></p>
+            <div class="extra-modal-content ">
+              <div v-if="editDescription" class="cursor-pointer font-size-description " @click="enableEditDescription">
+                <div class="text-left " v-html="formatText(dataFromStore.description)" />
               </div>
               <div v-else class="box-input">
                 <textarea v-model="descriptionTask" placeholder="add multiple lines" class="input-form"
@@ -38,11 +38,13 @@
               </div>
 
               <div class="block-in-center my-2 ">
-                <svg-icon type="mdi" :path="linkEdit" color="black" size="32px" class="mr-1 cursor-pointer" @click="enableEditLink"></svg-icon>
-                <div v-if="editLink" class="cursor-pointer" >
-
-                  <a :href="dataFromStore.linkTask" target="_blank" class="a-clean">
-                    Перейти на страницу <span class="font-bold">{{ dataFromStore.linkTask }}</span></a>
+                 <div v-if="editLink" class="cursor-pointer block-in-center" >
+                    <div v-if="checkLink(dataFromStore.linkTask)" class="block-in-center">
+                      открыть страницу <a :href="dataFromStore.linkTask" target="_blank" class="a-clean"> <svg-icon type="mdi" :path="link" color="black" size="32px" class="ml-1 cursor-pointer" ></svg-icon></a>
+                    </div>
+                    <div v-else class="block-in-center">
+                      введите  ссылку на страницу <svg-icon type="mdi" :path="linkEdit" color="black" size="32px" class="mr-1 cursor-pointer"  @click="enableEditLink"></svg-icon>
+                    </div>
                 </div>
                 <div v-else>
                   <input v-model="newLinkTask" @blur="updateLinkOneTask(dataFromStore.id, newLinkTask)"
@@ -66,7 +68,7 @@
 
 <script>
 import SvgIcon from '@jamescoyle/vue-icon'
-import {mdiWindowClose, mdiLinkBoxVariantOutline, mdiLinkEdit} from '@mdi/js'
+import {mdiWindowClose, mdiLink, mdiLinkEdit} from '@mdi/js'
 import {useKanbanStore} from '../../stores/kanban'
 import {ref} from "vue";
 
@@ -81,6 +83,9 @@ export default {
     let editMode = ref(true)
     let editDescription = ref(true)
     let editLink = ref(true)
+    const checkLink = (link) => {
+      return link !== "#";
+    }
     const handleOpenTaskDescription = async (taskId) => {
       try {
         const foundTask = await kanbanStore.findOpenTask(taskId);
@@ -125,7 +130,8 @@ export default {
       newLinkTask,
       editMode,
       editDescription,
-      editLink
+      editLink,
+      checkLink
     };
   },
   components: {
@@ -147,7 +153,7 @@ export default {
     return {
       active: false,
       close: mdiWindowClose,
-      link: mdiLinkBoxVariantOutline,
+      link: mdiLink,
       linkEdit: mdiLinkEdit,
       message: "введите текст задачи",
       containerHeight: 300
@@ -222,7 +228,7 @@ export default {
   background-color: whitesmoke;
   border-radius: 0.5rem;
   min-height: 100px;
-  padding: 8px;
+  padding: 0 12px 0 12px;
 }
 
 .extra-modal-content {
@@ -257,6 +263,22 @@ export default {
   }
   100% {
     transform: translate(-50%, -50%) scale(1);
+  }
+}
+.font-size-description {
+  font-size: 1rem;
+}
+.font-size-description div{
+  padding: 0 12px;
+}
+@media screen and (max-width: 1024px) {
+  .font-size-description {
+    font-size: 0.91rem;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .font-size-description {
+    font-size: 0.76rem;
   }
 }
 </style>
