@@ -25,6 +25,7 @@
 .input-common {
     border: 1px solid #484849;
     padding: 8px 12px;
+    border-radius: 0.5rem;
 }
 
 .percent100 {

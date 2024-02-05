@@ -1,12 +1,16 @@
 <template>
-  <div>
-    <form @submit.prevent="addColumn" data-testid="add-items">
-      <input type="text" v-model="newColumn" class="input-common"/>
-      <button class="btn-common ml-2"> добавить стадию</button>
+  <div class="block-in-center text-[#6b6b6b] " style="flex-direction: column">
+    <form @submit.prevent="addColumn" data-testid="add-items" class="grid grid-cols-1 md:grid-cols-2 gap-1">
+      <div>
+        <input type="text" v-model="newColumn" class="input-common" placeholder="Новая стадия"/>
+      </div>
+      <div>
+        <button class="btn-common w-full md:w-auto">Добавить стадию</button>
+      </div>
     </form>
     <div class="kanban-main">
     <div class="kanban-board">
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 p-8 sm:p-0 gap-8 sm:gap-16 my-4 sm:my-12">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 p-8 sm:p-0 gap-8 sm:gap-16 my-4 sm:my-12 ">
         <div v-for="(column, index) in columns" :key="index" class="kanban-column">
           <svg-icon type="mdi" :path="deleteNew" @click.stop="removeColumn(index)" class="delete-icon"></svg-icon>
           <div v-if="column.editMode" class="cursor-pointer" @click="enableEditMode(column)">

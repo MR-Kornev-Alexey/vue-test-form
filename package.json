@@ -1,5 +1,5 @@
 {
-  "name": "kanban-sample",
+  "name": "nuxt",
   "private": true,
   "scripts": {
     "build": "nuxt build",

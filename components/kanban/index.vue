@@ -2,7 +2,7 @@
   <section class="flex p-6 sm:p-20 mx-auto container">
     <div class="flex-col">
       <div class="text-center space-y-3 relative">
-        <h2 class="text-[#14183E] font-bold text-4xl sm:text-5xl font-volkhov uppercase">Kanban</h2>
+        <h2 class="text-[#6b6b6b] font-bold text-4xl sm:text-5xl font-volkhov uppercase">Kanban</h2>
         <KanbanBoard />
       </div>
     </div>
