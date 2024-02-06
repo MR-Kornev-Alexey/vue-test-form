@@ -21,7 +21,7 @@
                    @keyup.enter="disableEditMode(column.title,column.id)"
                    class="input-common percent100">
           </div>
-          <div @drop="dropTask(index)" @dragover.prevent class="kanban-column-tasks mt-3">
+          <div @drop="dropTask(index)" @dragover.prevent class="kanban-column-tasks mt-3" @touchstart="dropTask(index)">
             <Task v-for="(task, taskIndex) in column.tasks" :key="taskIndex" :task="task" :phaseIndex="index"
                   :taskIndex="taskIndex"
                   @dragstart="dragstart(task, index, taskIndex)" @deleteTask="deleteTask(index, taskIndex)"
