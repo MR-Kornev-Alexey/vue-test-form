@@ -13,7 +13,7 @@
            <div class="extra-modal-inner " ref="scrollContainer" :style="{ height: updateHeight + 'px', overflowY: 'auto' }"  >
             <div class="extra-modal-header">
               <div>
-                <div v-if="editMode" class="cursor-pointer" @click="enableEditMode">
+                <div v-if="editMode" class="cursor-pointer" @click.stop="enableEditMode">
                   <h2> {{ dataFromStore.title }}</h2>
                 </div>
                 <div v-else>
@@ -23,10 +23,10 @@
                 </div>
               </div>
               <svg-icon type="mdi" :path="close" class="delete-icon" color="black" size="32px"
-                        @click="modalToggle"></svg-icon>
+                        @click.stop="modalToggle"></svg-icon>
             </div>
             <div class="extra-modal-content ">
-              <div v-if="editDescription" class="cursor-pointer font-size-description " @click="enableEditDescription">
+              <div v-if="editDescription" class="cursor-pointer font-size-description " @click.stop="enableEditDescription">
                 <div class="text-left " v-html="formatText(dataFromStore.description)" />
               </div>
               <div v-else class="box-input">
@@ -43,7 +43,7 @@
                       открыть страницу <a :href="dataFromStore.linkTask" target="_blank" class="a-clean"> <svg-icon type="mdi" :path="link" color="black" size="32px" class="ml-1 cursor-pointer" ></svg-icon></a>
                     </div>
                     <div v-else class="block-in-center">
-                      введите  ссылку на страницу <svg-icon type="mdi" :path="linkEdit" color="black" size="32px" class="mr-1 cursor-pointer"  @click="enableEditLink"></svg-icon>
+                      введите  ссылку на страницу <svg-icon type="mdi" :path="linkEdit" color="black" size="32px" class="mr-1 cursor-pointer"  @click.stop="enableEditLink"></svg-icon>
                     </div>
                 </div>
                 <div v-else>
@@ -59,7 +59,7 @@
         </div>
       </transition>
 
-      <div @click="modalToggle" class="extra-modal-bg">
+      <div @click.stop="modalToggle" class="extra-modal-bg">
 
       </div>
     </div>

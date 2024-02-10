@@ -1,5 +1,5 @@
 <template>
-  <div class="task" draggable="true" @dragstart="dragstart" @click="goToTaskDetails" @deleteTask="deleteTask">
+  <div class="task" draggable="true" @dragstart="dragstart" @click.stop="goToTaskDetails" @deleteTask="deleteTask">
     <svg-icon type="mdi" :path="deleteNew" @click.stop="deleteTask" class="delete-icon"></svg-icon>
     <div>{{ task.title }}</div>
   </div>

@@ -13,7 +13,7 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 p-8 sm:p-0 gap-8 sm:gap-16 my-4 sm:my-12 ">
         <div v-for="(column, index) in columns" :key="index" class="kanban-column">
           <svg-icon type="mdi" :path="deleteNew" @click.stop="removeColumn(index)" class="delete-icon"></svg-icon>
-          <div v-if="column.editMode" class="cursor-pointer" @click="enableEditMode(column)">
+          <div v-if="column.editMode" class="cursor-pointer" @click.stop="enableEditMode(column)">
             <h2> {{ column.title }}</h2>
           </div>
           <div v-else>
