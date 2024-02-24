@@ -1,49 +1,56 @@
 <template>
   <section class="flex flex-col justify-center items-center mx-auto p-6 container">
-      <h2 class="text-[#6b6b6b] font-bold text-4xl sm:text-3xl font-volkhov uppercase">Форма заказа</h2>
+    <h2 class="text-[#6b6b6b] font-bold text-4xl sm:text-3xl font-volkhov uppercase">Форма заказа</h2>
     <Form @submit="handleRegister" :validation-schema="schema" class="flex flex-col justify-center items-center p-6 ">
-        <div class="flex flex-col justify-center p-6">
-          <label for="name" class="p-2">Введите ваше имя</label>
-          <Field name="name" type="text" id="name" class="border-solid border-2 border-gray-600 p-1"/>
-          <ErrorMessage name="name" class="text-[red] text-xs mt-1"/>
-        </div>
       <div class="flex flex-col justify-center p-6">
-          <label for="phone">Ведите номер телефона</label>
-          <Field name="phone" type="phone" id="phone"
-                 v-model="phoneNumber"
-                 @keypress="allowOnlyNumbersAndPlus"
-                 pattern="^\+?[0-9]+$"
-                 @blur="validatePhoneNumber"
-                 @keyup.enter="validatePhoneNumber"
-                 class="border-solid border-2 border-gray-600 p-1"/>
-        </div>
-      <div class="text-[red] text-xs mt-1">{{errorPhone}}</div>
-      <div>
-         <input type="hidden" name="hiddenField" v-model="hiddenField">
+        <label for="name" class="p-2">Введите ваше имя</label>
+        <Field name="name" type="text" id="name" class="border-solid border-2 border-gray-600 p-1" autocomplete="name"/>
+        <ErrorMessage name="name" class="text-[red] text-xs mt-1"/>
       </div>
       <div class="flex flex-col justify-center p-6">
-          <button class="p-4 cursor-pointer border-solid border-2 border-[#6b6b6b]  uppercase hover:bg-red text-[#6b6b6b]  font-bold py-2 px-4  inline-flex items-center" :disabled="loading">
-            <svg-icon v-show="loading" type="mdi" :path="path" ></svg-icon>
-           Заказать
-          </button>
-        </div>
+        <label for="phone">Ведите номер телефона</label>
+        <Field name="phone" type="phone" id="phone"
+               v-model="phoneNumber"
+               @keypress="allowOnlyNumbersAndPlus"
+               pattern="^\+?[0-9]+$"
+               @blur="validatePhoneNumber"
+               @keyup.enter="validatePhoneNumber"
+               class="border-solid border-2 border-gray-600 p-1"
+               autocomplete="phone"/>
+      </div>
+      <div class="text-[red] text-xs mt-1">{{ errorPhone }}</div>
+      <div>
+        <input type="hidden" name="hiddenField" v-model="hiddenField">
+      </div>
+
+      <div class="flex flex-col justify-center p-6">
+        <button
+            class="p-4 cursor-pointer border-solid border-2 border-[#6b6b6b]  uppercase hover:bg-red text-[#6b6b6b]  font-bold py-2 px-4  inline-flex items-center"
+            :disabled="loading">
+          <span class="svg-spinners--180-ring" v-show="loading"></span>
+          Заказать
+        </button>
+      </div>
     </Form>
   </section>
 </template>
 
 <script>
-import { Form, Field, ErrorMessage } from 'vee-validate'
+import {Form, Field, ErrorMessage} from 'vee-validate'
 import * as yup from 'yup'
-import SvgIcon from '@jamescoyle/vue-icon';
-import { mdiLock } from '@mdi/js';
+import SvgIcon from '@jamescoyle/vue-icon'
+import {mdiLock} from '@mdi/js';
 import axios from 'axios';
+import { Icon } from '#components'
+
 export default {
   name: 'input-form',
   components: {
     Form,
     Field,
     ErrorMessage,
-    SvgIcon
+    SvgIcon,
+    Icon
   },
   data() {
     const schema = yup.object().shape({
@@ -92,7 +99,7 @@ export default {
         event.preventDefault();
       }
     },
-    handleRegister () {
+    handleRegister() {
       this.loading = true
       axios.post('https://order.drcash.sh/v1/order', {
         stream_code: 'iu244',
@@ -120,7 +127,20 @@ export default {
 };
 </script>
 
-<style scoped >
-
+<style>
+.svg-spinners--180-ring {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12,4a8,8,0,0,1,7.89,6.7A1.53,1.53,0,0,0,21.38,12h0a1.5,1.5,0,0,0,1.48-1.75,11,11,0,0,0-21.72,0A1.5,1.5,0,0,0,2.62,12h0a1.53,1.53,0,0,0,1.49-1.3A8,8,0,0,1,12,4Z'%3E%3CanimateTransform attributeName='transform' dur='0.75s' repeatCount='indefinite' type='rotate' values='0 12 12;360 12 12'/%3E%3C/path%3E%3C/svg%3E");
+  background-color: currentColor;
+  -webkit-mask-image: var(--svg);
+  mask-image: var(--svg);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
 </style>
+
 

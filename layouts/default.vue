@@ -5,11 +5,11 @@ useHead({
     lang: 'en',
   },
   meta: [
-    { property: 'og:title', content: `Kanban` },
-    { name: 'description', content: 'Kanban is new table kanban ' },
-    { property: 'og:url', content: 'https://kanban.kornevgmbh.com/' }
+    { property: 'og:title', content: `order Form ` },
+    { name: 'description', content: 'Order Form is new test form' },
+    { property: 'og:url', content: 'https://testform.kornevgmbh.com/' }
   ],
-  title: `Kanban`,
+  title: `Order Form`,
 })
 </script>
 
