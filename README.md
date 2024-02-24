@@ -1,6 +1,6 @@
 # TestForm
 
-testForm - a project snippet using Nuxt 3 / TailwindCSS / Pinia
+testForm - a project snippet using Nuxt 3 / TailwindCSS
 
 Functionality
 
