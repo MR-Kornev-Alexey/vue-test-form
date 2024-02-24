@@ -1,7 +1,7 @@
 <script setup>
-import KanBan from '~/components/kanban/index.vue'
+import InputForm from '~/components/InputForm/index.vue'
 </script>
 
 <template>
-    <KanBan />
+  <InputForm/>
 </template>

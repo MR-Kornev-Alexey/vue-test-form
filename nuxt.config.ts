@@ -9,8 +9,7 @@ export default defineNuxtConfig({
     "nuxt-icon",
     "@nuxt/image",
     "@nuxtjs/tailwindcss",
-    "nuxt-headlessui",
-    "@pinia/nuxt"
+    "nuxt-headlessui"
   ],
   tailwindcss: {
     cssPath: "~/assets/css/tailwind.css",
